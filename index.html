@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yNodes Plugin - Introducción</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="toggle-btn">&#9776;</button>
+  <div id="sidebar" class="active">
+    <h2>yNodes Wiki</h2>
+    <ul>
+      <li><a href="index.html" class="active">Introducción</a></li>
+      <li><a href="installation.html">Instalación</a></li>
+      <li><a href="commands.html">Comandos</a></li>
+      <li><a href="architecture.html">Arquitectura</a></li>
+      <li><a href="contributing.html">Contribuir</a></li>
+      <li><a href="license.html">Licencia</a></li>
+    </ul>
+  </div>
+  <div id="content" class="shift">
+    <h1>yNodes Plugin</h1>
+    <p>Welcome to the <strong>yNodes</strong> Plugin documentation!</p>
+    <p>yNodes is a comprehensive town-and-nation Minecraft plugin (Spigot/Paper) that lets players create towns, form nations, claim territory, wage wars, engage in diplomacy, and manage economies. It is a fork of the Phonon <strong>Nodes</strong> plugin, updated and expanded with rich features like <strong>territory control</strong>, <strong>flag war system</strong>, <strong>alliances/peace treaties</strong>, <strong>plots</strong>, <strong>religion/ideology mechanics</strong>, <strong>chat channels</strong>, and more.</p>
+    <h2>Features Overview</h2>
+    <ul id="features">
+      <li>
+        <details>
+          <summary>Towns &amp; Nations</summary>
+          <p>Players can found towns, invite residents, and unite towns into nations for mutual benefit. Towns claim land chunk-by-chunk as territories and can ally or fight with others. Nations consolidate member towns under one banner and define diplomacy and chat channels.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Territorial Claims</summary>
+          <p>Land claiming is chunk-based starting from a home territory. Claims expand with <code>/town claim</code> and can be released with <code>/town unclaim</code>. A map view and optional minimap help visualize nearby territories.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Economy &amp; Resource Nodes</summary>
+          <p>Territories generate resources which accumulate in a Town Income inventory accessible via <code>/town income</code>. Admins can trigger temporary ore bonuses with <code>/orebonus</code>.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Flag War System</summary>
+          <p>During war, players place a flag in enemy territory to start a conquest timer. If successful, the chunk is captured. War mode is opt-in and tracks a War Score for ongoing conflicts.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Diplomacy – Alliances, Truces, Treaties</summary>
+          <p>Towns and nations can ally using <code>/ally</code>, negotiate truces, and finalize peace treaties via an interactive GUI started with <code>/peace</code>.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Religion &amp; Ideology Systems</summary>
+          <p>Players may found or join religions and ideologies using in-game menus. Towns and nations can set official beliefs that persist across sessions.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Land Plots &amp; Chest Protection</summary>
+          <p>Residents can create personal plots within town territory, manage trusted players, and transfer ownership while keeping chests protected.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Custom Chat Channels</summary>
+          <p>Switch between global, local, town, nation, and ally chat channels for focused communication. Commands like <code>/townchat</code> and <code>/nationchat</code> toggle each channel.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Name Tag Customization</summary>
+          <p>Town prefixes and suffixes appear before or after player names and can integrate with PlaceholderAPI and ProtocolLib for enhanced name plates.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Dynmap Integration</summary>
+          <p>When Dynmap is present, yNodes outputs JSON data to render town territories on a live map with color-coded overlays.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>PlaceholderAPI Support</summary>
+          <p>Register placeholders such as <code>%nodes_town%</code> or <code>%nodes_prefix%</code> for use in other plugins if PlaceholderAPI is installed.</p>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Data Storage &amp; Backup</summary>
+          <p>All data is saved in JSON format with optional auto-backups. Commands allow manual save or load operations for safety.</p>
+        </details>
+      </li>
+    </ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
