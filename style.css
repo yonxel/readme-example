@@ -74,6 +74,26 @@ body {
   margin-left: calc(250px + 20px);
 }
 
+/* Feature collapsibles */
+#features {
+  list-style: none;
+  padding: 0;
+}
+
+#features details {
+  margin: 10px 0;
+}
+
+#features summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #0ff;
+}
+
+#features p {
+  margin: 5px 0 0 20px;
+}
+
 @media (max-width: 768px) {
   #sidebar {
     transform: translateX(-250px);
