@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yNodes Plugin - Arquitectura</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="toggle-btn">&#9776;</button>
+  <div id="sidebar" class="active">
+    <h2>yNodes Wiki</h2>
+    <ul>
+      <li><a href="index.html">Introducción</a></li>
+      <li><a href="installation.html">Instalación</a></li>
+      <li><a href="commands.html">Comandos</a></li>
+      <li><a href="architecture.html" class="active">Arquitectura</a></li>
+      <li><a href="contributing.html">Contribuir</a></li>
+      <li><a href="license.html">Licencia</a></li>
+    </ul>
+  </div>
+  <div id="content" class="shift">
+    <h1>System Architecture</h1>
+    <p>Internally, yNodes is structured into various components and data managers. The core is the <code>Nodes</code> object, which holds global collections and flags: lists of all towns, nations, residents, maps of territories, resource nodes, etc. It also holds references to key managers like WarManager, ReligionManager, etc.</p>
+    <h2>Key Components</h2>
+    <ul>
+      <li><strong>Nodes Object:</strong> Centralized management of town, nation, and resident data.</li>
+      <li><strong>Data Classes:</strong>
+        <ul>
+          <li><code>Resident</code>: Represents a player and stores town membership, chat mode, and personal data.</li>
+          <li><code>Town</code>: Represents a town, including details like leadership, residents, territories, and relations.</li>
+          <li><code>Nation</code>: Represents a nation, containing member towns and nation-level settings.</li>
+          <li><code>Territory</code>: Represents chunks of land claimed by towns or nations.</li>
+        </ul>
+      </li>
+    </ul>
+    <p>These components interact through commands, events, and data storage, allowing dynamic management of towns, wars, and resources.</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
