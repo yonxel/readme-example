@@ -10,20 +10,26 @@
         <div id="sidebar" class="active"> 
             <h2>yNodes Wiki</h2> 
             <ul> 
-                <li><a href="index.html" class="active">Introduction</a>
+                <li>
+                    <a href="index.html" class="active">Introduction</a> 
                 </li>                 
-                <li><a href="installation.html">Instalación</a>
+                <li>
+                    <a href="installation.html">Instalación</a> 
                 </li>                 
-                <li><a href="commands.html">Comandos</a>
+                <li>
+                    <a href="commands.html">Comandos</a> 
                 </li>                 
-                <li><a href="architecture.html">Arquitectura</a>
+                <li>
+                    <a href="architecture.html">Arquitectura</a> 
                 </li>                 
-                <li><a href="contributing.html">Contribuir</a>
+                <li>
+                    <a href="contributing.html">Contribuir</a> 
                 </li>                 
-                <li><a href="license.html">Licencia</a>
+                <li>
+                    <a href="license.html">Licencia</a> 
                 </li>                 
             </ul>             
-        </div>
+        </div>         
         <button id="toggle-btn">&#9776;</button>         
         <div id="content" class="shift"> 
             <h1>yNodes Plugin</h1> 
@@ -31,19 +37,82 @@
             <p>yNodes is a comprehensive town-and-nation Minecraft plugin (Spigot/Paper) that lets players create towns, form nations, claim territory, wage wars, engage in diplomacy, and manage economies. It is a fork of the Phonon <strong>Nodes</strong> plugin, updated and expanded with rich features like <strong>territory control</strong>, <strong>flag war system</strong>, <strong>alliances/peace treaties</strong>, <strong>plots</strong>, <strong>religion/ideology mechanics</strong>, <strong>chat channels</strong>, and more.</p> 
             <h2>Features Overview</h2> 
             <ul> 
-                <li>Towns &amp; Nations</li>
-                <p>Players can found towns, invite residents, and then unite towns into nations for mutual benefit. Towns claim land chunk-by-chunk as territories, have leaders/officers, and can ally or fight with other towns. Nations have a capital town and consolidate member towns under one banner (e.g. a nation&rsquo;s capital town leader effectively leads the nation). Towns and nations are assigned random map colors and can be renamed or colored by leaders. Town and nation membership defines diplomacy, chat channels, and war participation.</p> 
-                <li>Territorial Claims</li>                 
-                <li>Economy &amp; Resource Nodes</li>                 
-                <li>Flag War System</li>                 
-                <li>Diplomacy – Alliances, Truces, Treaties</li>                 
-                <li>Religion &amp; Ideology Systems</li>                 
-                <li>Land Plots &amp; Chest Protection</li>                 
-                <li>Custom Chat Channels</li>                 
-                <li>Name Tag Customization</li>                 
-                <li>Dynmap Integration</li>                 
-                <li>PlaceholderAPI Support</li>                 
-                <li>Data Storage &amp; Backup</li>                 
+                <li>Towns &amp; Nations</li>                 
+                <p>Players can found **towns**, invite residents, and then unite towns into **nations** for mutual benefit. Towns claim land chunk-by-chunk as **territories**, have leaders/officers, and can ally or fight with other towns. Nations have a capital town and consolidate member towns under one banner (e.g. a nation&rsquo;s capital town leader effectively leads the nation). Towns and nations are assigned random map colors and can be renamed or colored by leaders. Town and nation membership defines diplomacy, chat channels, and war participation.</p> 
+                <li>Territorial Claims</li>
+                <p>Land claiming is chunk-based. A new town starts with its founding chunk as **home territory** and can expand claims using `/town claim`. Each territory is tracked with a unique ID and may contain **resource nodes** (e.g. ore deposits, farms). The world map is divided into territory chunks stored in persistent data. Towns have a claim power system controlling how many chunks they can own (with possible bonuses or penalties). Unclaiming territory (`/town unclaim`) frees land. A **map view** (`/town map`) is available to visualize nearby territories in chat, and a toggleable sidebar **minimap** (`/town minimap`) can show an ASCII map of chunks.</p> 
+                <li>Economy &amp; Resource Nodes</li>
+                <p>Every territory can yield resources which contribute to a town&rsquo;s **income**. Resource nodes (categories like *crops*, *animals*, *ore*, etc.) define what a territory produces. The plugin periodically generates resources for each territory owned by a town. These accumulate in a **Town Income** inventory which town leaders/officers can access via `/town income`. The income inventory holds items (materials, crops, etc.) which can be withdrawn but not deposited (insertion is blocked to prevent exploits). Towns must manually collect the income; an **income tick** runs in the background to update these resources, and admins can force an update with `/nodesadmin runincome`. The **Ore Bonus** system allows admins to trigger double-ore events using `/orebonus <multiplier> 
+                        <duration>` (e.g. `x3` drops for 60 seconds). An ore bonus affects server-wide ore yields for the duration, or can be reset with `/orebonus reset`.</duration>
+                    </multiplier></p> 
+                <li>Flag War System</li>
+                <p>yNodes implements a **flag war** mechanic inspired by Towny&rsquo;s wartime system. During a war, players can place a **&ldquo;flag&rdquo; block** in enemy territory to begin a **conquest timer**; if the timer completes, that chunk is captured by the attacker. A town&rsquo;s **home territory (&ldquo;core&rdquo; chunk)** is especially important &ndash; if it&rsquo;s taken, the territory becomes &ldquo;occupied&rdquo; by the attacker. War is an **opt-in state** toggled by admins (war can be globally enabled/disabled). When war is active, normal protections change: towns may lose land to enemies and cannot perform certain actions (configurable via rules like whether new towns can be created or players can leave towns during war). The plugin tracks a **War Score** for ongoing wars, which increases or decreases based on territory captures and possibly other factors (kills, etc.). Players can check the current war score with `/war score`.</p> 
+                <li>**Diplomacy &ndash; Alliances, Truces, Treaties:** Beyond wars, towns and nations can forge alliances or negotiate peace:</li>
+                <p>* **Alliances:** Two towns or nations can become allies by mutual agreement. Using `/ally <town |nation>` sends an alliance request to the target. The target must also use the `/ally` command naming the requester to accept. Once allied, towns cannot declare war on each other and share an **ally chat** channel. Alliances can be dissolved with `/unally 
+                        <name>` (no mutual confirmation needed). Only nation capitals or independent town leaders (and their officers) can offer or accept alliances. If a request is pending, using `/ally 
+                            <name>` again by the other party will form the alliance, which is broadcast server-wide. (The system prevents alliance with enemies or duplicate requests.)
+                                * **Truces:** After a war, a temporary **truce period** prevents immediate re-declaration of war. The `/truce` command shows the list of current truces involving your town and how long until they expire. For example, if Town A and Town B signed a peace treaty, a truce might last a set time (configurable) during which neither can declare war. Players can also view another town&rsquo;s truce status with `/truce 
+
+                                <town>`. Truces are automatically managed by the plugin when peace treaties are finalized.
+                                    * **Peace Treaties:** To end an active war, towns negotiate a treaty using `/peace 
+
+                                    <town |nation>`. Offering peace opens a **Treaty GUI** where terms can be set and viewed by both sides. When a treaty is offered, members of both communities get notified to use `/peace` to negotiate. During negotiation, war is paused (no further territory can be captured). The actual terms (surrender conditions, payments, etc.) would be agreed externally or via an integrated GUI if implemented. Once terms are settled, leaders/officers from each side finalize it with `/treaty finalize`. Finalizing ends the war &ndash; territories occupied may be annexed or returned depending on terms, and a truce period begins. If a treaty negotiation is initiated but not yet accepted, it remains active until either finalized or presumably cancelled by renewed conflict.</town>
+                                </town>
+                            </name>
+                        </name>
+                    </town></p> 
+                <li>Religion &amp; Ideology Systems</li>
+                <p>yNodes adds **religion** and **ideology** as customizable concepts for towns and nations. Players can create a religion or ideology via an in-game GUI, allowing roleplay or additional mechanics (e.g. cultural influence). Using `/religion` opens a **Religion menu** for the player, where they can found a new religion or join one (the specifics of conversion are handled in the GUI). Towns and nations can have an **official religion** and ideology, and these are stored in their data. Religions/ideologies might exert &ldquo;pressure&rdquo; on neighboring towns (this is hinted by fields like `pressurePower` in data). Only OPs can access the admin menu `/religion menu` to manage all religions. Similarly, `/ideology` opens the Ideology menu (with an admin mode via `menu` argument for ops). These systems are largely GUI-driven; players do not directly type commands to set beliefs &ndash; instead, they use the menu to create or choose a religion/ideology, and the plugin&rsquo;s **ReligionManager/IdeologyManager** handles registration and persistence. The religion and ideology features add depth (e.g. nations can have a state religion and towns can have local religions, which are saved and loaded to disk) but do not force gameplay changes unless configured (server admins can decide how to leverage these socially).</p> 
+                <li>Land Plots &amp; Chest Protection</li>
+                <p>Within a town&rsquo;s territory, residents can carve out personal **plots** of land. A plot is a sub-zone defined by two corner positions (like WorldEdit selections) and is owned by a resident. The `/plot` command allows town members to manage these plots:
+  * `/plot select` &ndash; Enable selection mode to choose two corners with left/right-click.
+  * `/plot create <name>` &ndash; Claim the selected area as your plot (must be within your town&rsquo;s territory). The selection must lie entirely in one territory chunk and cannot overlap existing plots. Upon creation, the plot is recorded in town data and saved persistently.
+                        * `/plot trust 
+
+                        <plot> 
+                            <player>` &ndash; Give another player access to your plot. Trusted players can build or open chests there. `/plot untrust 
+                                <plot> 
+                                    <player>` to revoke access.
+                                        * `/plot transfer 
+
+                                        <plot> 
+                                            <player>` &ndash; Transfer ownership of a plot to another resident.
+                                                * `/plot delete 
+
+                                                <name>` &ndash; Remove a plot (must be owner or town leader). This frees the land for general town use.
+                                                    * `/plot show` &ndash; Temporarily display the borders of your plots (e.g. by particle effects or highlights).
+                                                    * *(There is also `/plot save`, used to manually force saving plots to disk, mainly for debugging.)*
+                                                    Town leaders can manage **trusted** status globally via `/town trust 
+
+                                                    <name>` (mark a resident as trusted in town) and `/town untrust 
+                                                        <name>`. Trusted status, and **town permission settings**, control who can interact in the town. Towns have configurable **permissions** for various actions (build, destroy, use items, open chests, etc.) for different groups (town members, allies, nation members, outsiders) via `/town permissions [type] [group] [allow|deny]`. For example, a town could `/town permissions build ally deny` to prevent allies from building in its territory. These settings are stored per town and enforced by event listeners.</name>
+                                                    </name>
+                                                </name>
+                                            </player>
+                                        </plot>
+                                    </player>
+                                </plot>
+                            </player>
+                        </plot>
+                    </name></p> 
+                <li>Custom Chat Channels</li>
+                <p>The plugin provides multiple in-game chat channels for more immersive communication:
+
+  * **Global Chat:** All players server-wide. Typing normally goes to global by default, but players can toggle to other channels. `/globalchat` or `/gc` toggles your chat mode to **Global**. With no arguments, it switches your active channel to global; with subcommands `/gc mute` or `leave` you can temporarily silence global chat (meaning you stop receiving it) and `/gc unmute` or `join` to enable it again. *(Global is enabled by default; these commands mainly allow opting out if desired.)*
+  * **Local Chat:** Range-limited chat (e.g. only heard by players nearby in the world). `/localchat` or `/lc` toggles Local channel. Similar subcommands `/lc mute` and `/lc unmute` let you leave or rejoin local chat listening.
+  * **Town Chat:** Private chat for members of your town. `/townchat` or `/tc` sets your chat mode to Town. When active, messages you send will only be seen by fellow town members. There is a `/tc leave` option to leave the town channel (though by default players are always in their town chat unless they switch; the `leave` subcommand is a placeholder for future use).
+  * **Nation Chat:** Similar to town chat, but includes all players in your nation (across all member towns). `/nationchat` or `/nc` toggles Nation channel. Only members of the same nation see these messages.
+  * **Ally Chat:** Communication channel shared between your town and any allied towns/nations. `/allychat` or `/ac` toggles Ally channel. This is useful for coordinating with allies during war or joint events. (Allied towns and nations share one combined ally chat.)
+
+  *Mechanics:* Players can switch channels on the fly; the plugin prepends messages with appropriate tags. Using a channel command with no args toggles your **active speaking channel** (e.g. after `/tc`, your messages go to Town chat until you switch). The plugin maintains each player&rsquo;s `ChatMode` (GLOBAL, LOCAL, TOWN, NATION, ALLY). Chat channel membership is automatic based on town/nation; however, global and local can be muted/unmuted explicitly. The **tab-completion** for channel commands offers &ldquo;mute/unmute/join/leave&rdquo; options where applicable. By default, upon login players have Global and Local chat enabled and can read both; switching channel only affects where **their** messages go. The plugin also supports **local radius** (configured range for local chat in blocks) and **channel prefixes** (e.g. &ldquo;\[Town]&rdquo;, &ldquo;\[Nation]&rdquo;) through its `Chat` module.</p> 
+                <li>Name Tag Customization</li>
+                <p>Land claiming is chunk-based. A new town starts with its founding chunk as **home territory** and can expand claims using `/town claim`. Each territory is tracked with a unique ID and may contain **resource nodes** (e.g. ore deposits, farms). The world map is divided into territory chunks stored in persistent data. Towns have a claim power system controlling how many chunks they can own (with possible bonuses or penalties). Unclaiming territory (`/town unclaim`) frees land. A **map view** (`/town map`) is available to visualize nearby territories in chat, and a toggleable sidebar **minimap** (`/town minimap`) can show an ASCII map of chunks.</p> 
+                <li>Dynmap Integration</li>
+                <p>Land claiming is chunk-based. A new town starts with its founding chunk as **home territory** and can expand claims using `/town claim`. Each territory is tracked with a unique ID and may contain **resource nodes** (e.g. ore deposits, farms). The world map is divided into territory chunks stored in persistent data. Towns have a claim power system controlling how many chunks they can own (with possible bonuses or penalties). Unclaiming territory (`/town unclaim`) frees land. A **map view** (`/town map`) is available to visualize nearby territories in chat, and a toggleable sidebar **minimap** (`/town minimap`) can show an ASCII map of chunks.</p> 
+                <li>PlaceholderAPI Support</li>
+                <p>Land claiming is chunk-based. A new town starts with its founding chunk as **home territory** and can expand claims using `/town claim`. Each territory is tracked with a unique ID and may contain **resource nodes** (e.g. ore deposits, farms). The world map is divided into territory chunks stored in persistent data. Towns have a claim power system controlling how many chunks they can own (with possible bonuses or penalties). Unclaiming territory (`/town unclaim`) frees land. A **map view** (`/town map`) is available to visualize nearby territories in chat, and a toggleable sidebar **minimap** (`/town minimap`) can show an ASCII map of chunks.</p> 
+                <li>Data Storage &amp; Backup</li>
+                <p>Land claiming is chunk-based. A new town starts with its founding chunk as **home territory** and can expand claims using `/town claim`. Each territory is tracked with a unique ID and may contain **resource nodes** (e.g. ore deposits, farms). The world map is divided into territory chunks stored in persistent data. Towns have a claim power system controlling how many chunks they can own (with possible bonuses or penalties). Unclaiming territory (`/town unclaim`) frees land. A **map view** (`/town map`) is available to visualize nearby territories in chat, and a toggleable sidebar **minimap** (`/town minimap`) can show an ASCII map of chunks.</p> 
             </ul>             
         </div>         
         <script src="script.js"></script>         
