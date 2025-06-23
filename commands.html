@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yNodes Plugin - Comandos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="toggle-btn">&#9776;</button>
+  <div id="sidebar" class="active">
+    <h2>yNodes Wiki</h2>
+    <ul>
+      <li><a href="index.html">Introducción</a></li>
+      <li><a href="installation.html">Instalación</a></li>
+      <li><a href="commands.html" class="active">Comandos</a></li>
+      <li><a href="architecture.html">Arquitectura</a></li>
+      <li><a href="contributing.html">Contribuir</a></li>
+      <li><a href="license.html">Licencia</a></li>
+    </ul>
+  </div>
+  <div id="content" class="shift">
+    <h1>Comandos</h1>
+    <p>yNodes provides a robust set of commands. Here are the primary commands available:</p>
+    <h2>Town Commands (Town Management)</h2>
+    <ul>
+      <li><code>/town create &lt;name&gt;</code> – Create a new town with the given name at your current location.</li>
+      <li><code>/town delete</code> – Disband your town, deleting it permanently.</li>
+      <li><code>/town invite &lt;player&gt;</code> – Invite a player to join your town.</li>
+      <li><code>/town leave</code> – Leave your current town.</li>
+      <li><code>/town claim</code> – Claim the chunk you are currently standing in for your town.</li>
+      <li><code>/town unclaim</code> – Unclaim the current chunk.</li>
+      <li><code>/town map</code> – Show an ASCII map of the chunks around you.</li>
+      <li><code>/town minimap [size]</code> – Toggle a continuous minimap on your sidebar showing territory around you.</li>
+    </ul>
+    <h2>Nation Commands (Nation Management)</h2>
+    <ul>
+      <li><code>/nation create &lt;name&gt;</code> – Form a new nation with your town as the capital.</li>
+      <li><code>/nation delete</code> – Disband your nation.</li>
+      <li><code>/nation invite &lt;town&gt;</code> – Invite another town to join your nation.</li>
+      <li><code>/nation leave</code> – Leave your current nation.</li>
+    </ul>
+    <h2>War &amp; Diplomacy Commands</h2>
+    <ul>
+      <li><code>/war [town|nation]</code> – Declare war on another town or nation.</li>
+      <li><code>/peace [town|nation]</code> – Offer peace to end a war.</li>
+      <li><code>/truce [town]</code> – View active truces (post-war peace cooldowns).</li>
+      <li><code>/ally &lt;town|nation&gt;</code> – Propose an alliance with another town or nation.</li>
+      <li><code>/unally &lt;town|nation&gt;</code> – Break an existing alliance.</li>
+    </ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
