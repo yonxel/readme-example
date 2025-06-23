@@ -71,7 +71,7 @@ body {
 }
 
 #content.shift {
-  margin-left: 250px;
+  margin-left: calc(250px + 20px);
 }
 
 @media (max-width: 768px) {
@@ -88,6 +88,6 @@ body {
     margin-left: 0;
   }
   #content.shift {
-    margin-left: 250px;
+    margin-left: calc(250px + 20px);
   }
 }
