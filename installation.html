@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yNodes Plugin - Instalación</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="toggle-btn">&#9776;</button>
+  <div id="sidebar" class="active">
+    <h2>yNodes Wiki</h2>
+    <ul>
+      <li><a href="index.html">Introducción</a></li>
+      <li><a href="installation.html" class="active">Instalación</a></li>
+      <li><a href="commands.html">Comandos</a></li>
+      <li><a href="architecture.html">Arquitectura</a></li>
+      <li><a href="contributing.html">Contribuir</a></li>
+      <li><a href="license.html">Licencia</a></li>
+    </ul>
+  </div>
+  <div id="content">
+    <h1>Instalación</h1>
+    <p>Follow these steps to install and set up the <strong>yNodes Plugin</strong> on your Minecraft server.</p>
+    <h2>Requirements</h2>
+    <ul>
+      <li><strong>Java 17+</strong> (for Minecraft 1.19+ compatibility).</li>
+      <li>A <strong>Spigot/Paper</strong> server running a supported Minecraft version. yNodes is developed for Minecraft 1.16.5 originally and has been updated through Minecraft <strong>1.21.1</strong>.</li>
+    </ul>
+    <h2>Installation Steps</h2>
+    <ol>
+      <li><strong>Download yNodes</strong>
+        <ul>
+          <li>If you have a pre-built <code>yNodes.jar</code>, simply place it in your server’s <code>plugins/</code> directory.</li>
+          <li>To build from source, clone the repository and run <code>./gradlew build</code> in the <code>yNodes</code> project root – the plugin JAR will be output to <code>build/libs/</code>.</li>
+        </ul>
+      </li>
+      <li><strong>Dependencies</strong> (Optional but recommended)
+        <ul>
+          <li><em>ProtocolLib</em>: Optional. If installed and <code>useNametags</code> is enabled in <code>config.yml</code>, yNodes will use ProtocolLib to update player name tags.</li>
+          <li><em>Dynmap</em>: Optional. If present, yNodes will create a Dynmap layer showing town territories.</li>
+          <li><em>PlaceholderAPI</em>: Optional. If present, yNodes registers placeholders for town/nation names, etc.</li>
+          <li><em>CoreProtect</em>: Optional. If installed, yNodes integrates a <code>/town coinspect</code> feature that allows town staff to temporarily use CoreProtect’s inspector.</li>
+        </ul>
+      </li>
+    </ol>
+    <h2>After Installation</h2>
+    <p>After the first run, yNodes generates a <code>config.yml</code> in the <code>plugins/yNodes/</code> folder. Be sure to review and adjust these settings to suit your server needs.</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
