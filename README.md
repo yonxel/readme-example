@@ -343,7 +343,7 @@ In summary, yNodes is a **comprehensive town/nation plugin** with a modular arch
 
 ## Contributing
 
-Contributions to yNodes are welcome. If you are a developer, you can fork the repository and submit pull requests. Given that this is a fork of another project, please ensure your contributions align with the project’s goals and maintain code quality. Before coding a new feature or major change, it’s a good idea to open a discussion (issue) to verify it fits the scope of yNodes.
+Contributions to yNodes are welcome. If you are a developer, you can contact yonxel in discord to apply as a contributor in the project. Given that this is a fork of another project, please ensure your contributions align with the project’s goals and maintain code quality. Before coding a new feature or major change, it’s a good idea to open a discussion (issue) to verify it fits the scope of yNodes.
 
 When contributing:
 
@@ -354,9 +354,5 @@ When contributing:
 * By contributing, you agree that your code will be licensed under the same license (GPLv3).
 
 For any questions or to discuss development, you can reach out via the GitHub issues or any official Discord/Forum if provided.
-
-## License
-
-This project is open-source and licensed under the **GNU General Public License v3.0** (GPL-3.0). You are free to use, modify, and distribute the plugin as long as derivative work also abides by the GPL license. See the `LICENSE` file for the full license text.
 
 *Acknowledgements:* This plugin is based on Phonon’s original Nodes plugin. Credit to the original authors and contributors of that project for the foundational systems (towns, flag war concept) which yNodes builds upon. Special thanks to all testers and community members who provided feedback to improve yNodes.
