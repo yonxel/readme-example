@@ -78,4 +78,7 @@ body {
   #content {
     margin-left: 0;
   }
+  #content.shift {
+    margin-left: 250px;
+  }
 }
